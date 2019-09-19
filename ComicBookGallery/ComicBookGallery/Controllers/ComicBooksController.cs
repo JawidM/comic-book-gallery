@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComicBookGallery.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,15 +12,19 @@ namespace ComicBookGallery.Controllers
         // GET: ComicBook
         public ActionResult Detail()
         {
-            ViewBag.SeriesTitle = "The Amazing Spider-Man";
-            ViewBag.IssueNumber = 700;
-            ViewBag.Description = "Final Issue!";
-            ViewBag.Artists = new string[]
+            var comicBook = new ComicBook()
             {
-                "Script: Dan Slot",
-                "Letters: Edgar Delgado"
-            };  
-            return View();
+                SeriesTitle = "Spider Man",
+                IssueNumber = 700,
+                DescriptionHtml = "Final Issue!",
+                Artists = new Artist[]
+                {
+                    new Artist() { Name = "Dan Slott", Role = "Script" },
+                    new Artist() { Name = "Viktor Ola", Role = "Inks" },
+                    new Artist() { Name = "Edgar Del", Role = "Colors" }
+                }
+            };
+            return View(comicBook);
         }
     }
 }
